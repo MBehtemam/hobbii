@@ -24,8 +24,8 @@ const typeDefs = gql`
     reports: [Report]
   }
   type Time {
-    start: Int!
-    end: Int!
+    start: String!
+    end: String!
     by: User!
   }
   type Report {
@@ -102,6 +102,7 @@ const resolvers = {
   },
   Project: {
     owner:(parent,args)=> users.find(u => u.id === parent.owner),
+
     reports: (parent, ctx, args) => {
       const timesByUserId = {};
       parent.times.forEach((time) => {
@@ -121,6 +122,9 @@ const resolvers = {
       });
     },
   },
+  Time:{
+    by:(parent,args)=>users.find(u => u.id === parent.by)
+  }
 };
 
 const server = new ApolloServer({ typeDefs, resolvers });

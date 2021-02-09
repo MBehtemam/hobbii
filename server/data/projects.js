@@ -28,7 +28,7 @@ const projects = [
             },
             {
                 start:1612772435679,
-                end:1612806340898,
+                end:0,
                 by:2,
             }
         ]
